@@ -23,7 +23,7 @@ without having to maintain that document. Given a program which
 produces reasonably standard `--help' and `--version' outputs,
 help2man can re-arrange that output into something which resembles
 a manual page.
-	    
+
 %description -l pl
 help2man to narzêdzie do automatycznego generowania prostych stron
 manuala na podstawie wyj¶cia z programu. Ten program ma za zadanie
