@@ -30,7 +30,7 @@ help2man to narzêdzie do automatycznego generowania prostych stron
 manuala na podstawie wyj¶cia z programu. Ten program ma za zadanie
 daæ autorom oprogramowania ³atwy sposób na do³±czanie stron manuala
 bez opiekowania siê nimi. Po wskazaniu programu, który daje w miarê
-standardowe wyj¶ciedla opcji --help i --version, help2man potrafi
+standardowe wyj¶cie dla opcji --help i --version, help2man potrafi
 przekszta³ciæ to wyj¶cie na co¶ przypominaj±cego stronê manuala.
 
 %prep
