@@ -1,0 +1,381 @@
+--- help2man-1.31.1/Makefile.in.orig	2003-07-14 21:47:10.000000000 +0200
++++ help2man-1.31.1/Makefile.in	2003-07-14 22:23:17.000000000 +0200
+@@ -14,6 +14,7 @@
+ infodir = @infodir@
+ man1dir = $(mandir)/man1
+ man1dir_fr = $(mandir)/fr/man1
++man1dir_pl = $(mandir)/pl/man1
+ localedir = $(datadir)/locale
+ 
+ DESTDIR =
+@@ -34,26 +35,30 @@
+ 
+ basic: $(target)
+ check: $(target).1
+-all: basic check $(target).fr.1 info
++all: basic check $(target).fr.1 $(target).pl.1 info
+ 
+ install-strip: install
+ # No binaries to strip.
+ 
+-install: $(target) $(hack).so $(target).1 $(target).fr.1 $(target).info \
+-    po/fr.gmo
++install: $(target) $(hack).so $(target).1 $(target).fr.1 $(target).pl.1 $(target).info \
++    po/fr.gmo po/pl.gmo
+ 	$(MKINSTALLDIRS) $(DESTDIR)$(bindir)
+ 	$(MKINSTALLDIRS) $(DESTDIR)$(libdir)
+ 	$(MKINSTALLDIRS) $(DESTDIR)$(man1dir)
+ 	$(MKINSTALLDIRS) $(DESTDIR)$(man1dir_fr)
+-	$(MKINSTALLDIRS) $(DESTDIR)$(localedir)/fr/LC_MESSAGES
++	$(MKINSTALLDIRS) $(DESTDIR)$(man1dir_pl)
++	$(MKINSTALLDIRS) $(DESTDIR)$(localedir)/{fr,pl}/LC_MESSAGES
+ 	$(MKINSTALLDIRS) $(DESTDIR)$(infodir)
+ 
+ 	$(INSTALL_PROGRAM) $(target) $(DESTDIR)$(bindir)
+ 	$(INSTALL_PROGRAM) $(hack).so $(DESTDIR)$(libdir)
+ 	$(INSTALL_DATA) $(target).1 $(DESTDIR)$(man1dir)
+ 	$(INSTALL_DATA) $(target).fr.1 $(DESTDIR)$(man1dir_fr)/$(target).1
++	$(INSTALL_DATA) $(target).pl.1 $(DESTDIR)$(man1dir_pl)/$(target).1
+ 	$(INSTALL_DATA) po/fr.gmo \
+ 	    $(DESTDIR)$(localedir)/fr/LC_MESSAGES/$(target).mo
++	$(INSTALL_DATA) po/pl.gmo \
++	    $(DESTDIR)$(localedir)/pl/LC_MESSAGES/$(target).mo
+ 
+ 	$(INSTALL_DATA) $(target).info $(DESTDIR)$(infodir)/$(target).info
+ 	if test -f $(DESTDIR)$(infodir)/dir; \
+@@ -66,7 +71,8 @@
+ 	    $(DESTDIR)$(libdir)/$(hack).so \
+ 	    $(DESTDIR)$(man1dir)/$(target).1 \
+ 	    $(DESTDIR)$(man1dir_fr)/$(target).1 \
+-	    $(DESTDIR)$(localedir)/fr/LC_MESSAGES/$(target).mo \
++	    $(DESTDIR)$(man1dir_pl)/$(target).1 \
++	    $(DESTDIR)$(localedir)/{fr,pl}/LC_MESSAGES/$(target).mo \
+ 	    $(DESTDIR)$(infodir)/$(target).info
+ 
+ 	if test -f $(DESTDIR)$(infodir)/dir; \
+@@ -87,7 +93,7 @@
+ 	-rm -f config.cache config.log config.status Makefile 
+ 
+ realclean: distclean
+-	-rm -f $(target).info $(target).1 $(target).fr.1 po/*.gmo
++	-rm -f $(target).info $(target).1 $(target).fr.1 $(target).pl.1 po/*.gmo
+ 
+ maintainer-clean: realclean
+ 	rm -f configure
+@@ -110,10 +116,19 @@
+ 	./$(target) --include=$(srcdir)/$(target).fr.h2m \
+ 	    --output=$@ --locale=fr_FR@euro ./$(target)
+ 
++$(target).pl.1: $(hack).so po/pl.gmo $(target) $(srcdir)/$(target).pl.h2m
++	LD_PRELOAD="./$(hack).so preloadable_libintl.so" \
++	TEXTDOMAIN=help2man \
++	./$(target) --include=$(srcdir)/$(target).pl.h2m \
++	    --output=$@ --locale=pl_PL ./$(target)
++
+ po/fr.gmo: $(srcdir)/po/fr.po
+ 	test -d po || mkdir po
+ 	$(MSGFMT) -o $@ $?
+ 
++po/pl.gmo: $(srcdir)/po/pl.po
++	$(MSGFMT) -o $@ $?
++
+ info: $(target).info
+ $(target).info: $(srcdir)/$(target).texi
+ 	$(MAKEINFO) $? -o $@
+--- help2man-1.31.1/po/pl.po.orig	1970-01-01 01:00:00.000000000 +0100
++++ help2man-1.31.1/po/pl.po	2003-07-14 22:19:18.000000000 +0200
+@@ -0,0 +1,214 @@
++# Polish translation for help2man.
++# Copyright (C) 2003 Free Software Foundation
++# This file is distributed under the same license as the help2man package.
++# Jakub Bogusz <qboosh@pld.org.pl>, 2003.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: help2man 1.31.1\n"
++"POT-Creation-Date: 2003-07-09 20:33:36+1000\n"
++"PO-Revision-Date: 2003-07-14 21:53+0200\n"
++"Last-Translator: Jakub Bogusz <qboosh@pld.org.pl>\n"
++"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=iso-8859-2\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++#: help2man:65
++msgid ""
++"GNU %s %s\n"
++"\n"
++"Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software\n"
++"Foundation, Inc.\n"
++"This is free software; see the source for copying conditions.  There is NO\n"
++"warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
++"\n"
++"Written by Brendan O'Dea <bod@debian.org>\n"
++msgstr ""
++"GNU %s %s\n"
++"\n"
++"Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software\n"
++"Foundation, Inc.\n"
++"Ten program jest darmowy; warunki kopiowania s± opisane w ¼ród³ach.\n"
++"Autorzy nie daj± ¯ADNYCH gwarancji, w tym równie¿ gwarancji PRZYDATNO¦CI\n"
++"DO SPRZEDA¯Y LUB DO KONKRETNYCH CELÓW.\n"
++"\n"
++"Program napisa³ Brendan O'Dea <bod@debian.org>\n"
++
++#: help2man:76
++msgid ""
++"`%s' generates a man page out of `--help' and `--version' output.\n"
++"\n"
++"Usage: %s [OPTION]... EXECUTABLE\n"
++"\n"
++" -n, --name=STRING       description for the NAME paragraph\n"
++" -s, --section=SECTION   section number for manual page (1, 6, 8)\n"
++" -m, --manual=TEXT       name of manual (User Commands, ...)\n"
++" -S, --source=TEXT       source of program (FSF, Debian, ...)\n"
++" -L, --locale=STRING     select locale (default \"C\")\n"
++" -i, --include=FILE      include material from `FILE'\n"
++" -I, --opt-include=FILE  include material from `FILE' if it exists\n"
++" -o, --output=FILE       send output to `FILE'\n"
++" -p, --info-page=TEXT    name of Texinfo manual\n"
++" -N, --no-info           suppress pointer to Texinfo manual\n"
++"     --help              print this help, then exit\n"
++"     --version           print version number, then exit\n"
++"\n"
++"EXECUTABLE should accept `--help' and `--version' options although\n"
++"alternatives may be specified using:\n"
++"\n"
++" -h, --help-option=STRING     help option string\n"
++" -v, --version-option=STRING  version option string\n"
++"\n"
++"Report bugs to <bug-help2man@gnu.org>.\n"
++msgstr ""
++"`%s' generuje stronê podrêcznika z wyj¶cia `--help' i `--version'.\n"
++"\n"
++"Sk³adnia: %s [OPCJA]... PROGRAM\n"
++"\n"
++" -n, --name=£AÑCUCH      opis akapitu NAZWA\n"
++" -s, --section=SEKCJA    numer sekcji dla strony podrêcznika (1, 6, 8)\n"
++" -m, --manual=TEKST      nazwa podrêcznika (Polecenia u¿ytkownika, ...)\n"
++" -S, --source=TEKST      pochodzenie programu (FSF, Debian, ...)\n"
++" -L, --locale=£AÑCUCH    ustawienie lokalizacji (domy¶lnie \"C\")\n"
++" -i, --include=PLIK      do³±czenie materia³u z `PLIKU'\n"
++" -I, --opt-include=PLIK  do³±czenie materia³u z `PLIKU', je¶li takowy istnieje\n"
++" -o, --output=PLIK       zapisanie wyj¶cia do `PLIKU'\n"
++" -p, --info-page=TEKST   nazwa podrêcznika Texinfo\n"
++" -N, --no-info           pominiêcie wskazania do podrêcznika Texinfo\n"
++"     --help              wy¶wietlenie tego opisu i zakoñczenie pracy\n"
++"     --version           wy¶wietlenie numeru wersji i zakoñczenie pracy\n"
++"\n"
++"PROGRAM powinien przyjmowaæ opcje `--help' i `--version', aczkolwiek mo¿na\n"
++"podaæ alternatywne nazwy opcji przy pomocy:\n"
++"\n"
++" -h, --help-option=£AÑCUCH     ³añcuch opcji pomocy\n"
++" -v, --version-option=£AÑCUCH  ³añcuch opcji wersji\n"
++"\n"
++"B³êdy proszê zg³aszaæ na adres <bug-help2man@gnu.org>.\n"
++
++#: help2man:162
++msgid "%s: can't open `%s' (%s)"
++msgstr "%s: nie mo¿na otworzyæ `%s' (%s)"
++
++#: help2man:219
++msgid "%s: no valid information found in `%s'"
++msgstr "%s: nie znaleziono poprawnej informacji w `%s'"
++
++#: help2man:231
++msgid "%s: can't get `%s' info from %s"
++msgstr "%s: nie mo¿na uzyskaæ informacji `%s' z %s"
++
++#: help2man:243
++msgid "%s: can't unlink %s (%s)"
++msgstr "%s: nie mo¿na usun±æ %s (%s)"
++
++#: help2man:246
++msgid "%s: can't create %s (%s)"
++msgstr "%s: nie mo¿na utworzyæ %s (%s)"
++
++#: help2man:290
++msgid "%s \\- manual page for %s %s"
++msgstr "%s \\- strona podrêcznika dla %s %s"
++
++#: help2man:302
++msgid "System Administration Utilities"
++msgstr "Narzêdzia administracyjne"
++
++#: help2man:302
++msgid "Games"
++msgstr "Gry"
++
++#: help2man:304
++msgid "User Commands"
++msgstr "Polecenia u¿ytkownika"
++
++#: help2man:308
++msgid "or"
++msgstr "lub"
++
++#: help2man:345
++msgid "DESCRIPTION"
++msgstr "OPIS"
++
++#: help2man:359
++msgid "Report +bugs|Email +bug +reports +to"
++msgstr "B³êdy +(proszê|prosimy) +zg³aszaæ +na +adres|Raporty +o +b³êdach +wysy³aj +do"
++
++#: help2man:360
++msgid "Written +by"
++msgstr "Napisany +przez|Program +napisa(³a?|li)"
++
++#: help2man:361
++msgid "Options"
++msgstr "Opcje"
++
++#: help2man:362
++msgid "Examples"
++msgstr "Przyk³ady"
++
++#: help2man:363
++msgid "This +is +free +software"
++msgstr "Ten +program +jest +darmowy"
++
++#: help2man:375
++msgid "OPTIONS"
++msgstr "OPCJE"
++
++#: help2man:380
++msgid "EXAMPLES"
++msgstr "PRZYK£ADY"
++
++#: help2man:387
++msgid "COPYRIGHT"
++msgstr "COPYRIGHT"
++
++#: help2man:417
++msgid "REPORTING BUGS"
++msgstr "ZG£ASZANIE B£ÊDÓW"
++
++#: help2man:417
++msgid "AUTHOR"
++msgstr "AUTOR"
++
++#: help2man:546
++msgid "SEE ALSO"
++msgstr "ZOBACZ TAK¯E"
++
++#: help2man:549
++msgid ""
++"The full documentation for\n"
++".B %s\n"
++"is maintained as a Texinfo manual.  If the\n"
++".B info\n"
++"and\n"
++".B %s\n"
++"programs are properly installed at your site, the command\n"
++".IP\n"
++".B info %s\n"
++".PP\n"
++"should give you access to the complete manual.\n"
++msgstr ""
++"Pe³na dokumentacja dla programu\n"
++".B %s\n"
++"jest utrzymywana jako podrêcznik Texinfo. Je¶li programy\n"
++".B info\n"
++"oraz\n"
++".B %s\n"
++"s± w³a¶ciwie zainstalowane, polecenie\n"
++".IP\n"
++".B info %s\n"
++".PP\n"
++"powinno udostêpniæ kompletny podrêcznik.\n"
++
++#: help2man:571
++msgid "NAME"
++msgstr "NAZWA"
++
++#: help2man:571
++msgid "SYNOPSIS"
++msgstr "SK£ADNIA"
++
++#: help2man:601
++msgid "%s: error writing to %s (%s)"
++msgstr "%s: b³±d zapisu do %s (%s)"
+--- help2man-1.31.1/help2man.pl.h2m.orig	1970-01-01 01:00:00.000000000 +0100
++++ help2man-1.31.1/help2man.pl.h2m	2003-07-14 22:33:36.000000000 +0200
+@@ -0,0 +1,77 @@
++Encoding charset: ISO-8859-2
++Language: Polish
++Locale: pl_PL
++Translator: Jakub Bogusz <qboosh@pld.org.pl>
++
++Include file for Polish help2man man page
++
++$Id$
++
++[nazwa]
++help2man \- generowanie prostej strony podrêcznika
++
++[do³±czane pliki]
++Do generowanego pliku mo¿na do³±czyæ dodatkowy materia³ przy pomocy
++opcji
++.B \-\-include
++i
++.B \-\-opt\-include
++. Format jest prosty:
++
++    [sekcja]
++    tekst
++
++    /wzorzec/
++    tekst
++
++Bloki sformatowanego tekstu *roff s± wstawiane do wyj¶cia na pocz±tku
++podanej
++.BI [ sekcji ]
++(bez rozró¿niania wielko¶ci liter) lub po akapicie pasuj±cym do
++.BI / wzorca /\fR.
++
++Wzorce zapisuje siê przy u¿yciu sk³adni perlowych wyra¿eñ regularnych
++i mo¿na je zakoñczyæ modyfikatorami
++.IR i ,
++.I s
++lub
++.I m
++(patrz
++.BR perlre (1)).
++
++Linie przed pierwsz± sekcj± lub wzorzec zaczynaj±cy siê od `\-' s±
++przetwarzane jako opcje. Ca³a reszta jest po cichu ignorowana i mo¿e
++byæ u¿ywana jako komentarze, s³owa kluczowe RCS itp.
++
++Kolejno¶æ sekcji na wyj¶ciu to:
++
++    NAZWA
++    SK£ADNIA
++    OPIS
++    OPCJE
++    PRZYK£ADY
++    \fIinne\fR
++    AUTOR
++    ZG£ASZANIE B£ÊDÓW
++    COPYRIGHT
++    ZOBACZ TAK¯E
++
++Ka¿da sekcja
++.B [nazwa]
++lib
++.B [sk³adnia]
++wystêpuj±ca w pliku do³±czanym zastêpuje to, co zosta³oby automatycznie
++wyprodukowane (aczkolwiek mo¿na w razie potrzeby obej¶æ to zachowanie przez
++.B --name
++).
++
++Inne sekcje s± do³±czane do automatycznie generowanego wyj¶cia
++w przypadku standardowych, wy¿ej wymienionych sekcji lub w³±czane
++w miejscu
++.I inne
++(jak wy¿ej) w kolejno¶ci, w jakiej wyst±pi³y w do³±czanym pliku.
++
++[dostêpno¶æ]
++Najnowsza wersja tego oprogramowania jest dostêpna pod:
++
++    ftp://ftp.gnu.org/gnu/help2man/

@@ -2,14 +2,17 @@
 Summary:	help2man - automatic manual page generation
 Summary(pl):	help2man - automatyczne generowanie stron manuala
 Name:		help2man
-Version:	1.29
+Version:	1.31.1
 Release:	1
 License:	GPL
 Group:		Applications/Text
-Source0:	ftp://ftp.gnu.org/gnu/help2man/%{name}-%{version}.tar.gz
-# Source0-md5: d084ca7079239b4405f3a07298cf7229
+Source0:	ftp://ftp.gnu.org/gnu/help2man/%{name}_%{version}.tar.gz
+# Source0-md5:	a48e8496e6e2e406b796ddaf507f44a4
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-hack-link.patch
+Patch2:		%{name}-pl.patch
 URL:		http://www.gnu.org/software/help2man/
+BuildRequires:	perl-Locale-gettext
 BuildRequires:	rpm-perlprov
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -33,7 +36,9 @@ przekszta³ciæ to wyj¶cie na co¶ przypominaj±cego stronê manuala.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %configure2_13
@@ -42,9 +47,11 @@ przekszta³ciæ to wyj¶cie na co¶ przypominaj±cego stronê manuala.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -55,9 +62,12 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc NEWS README THANKS
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/hacklocaledir.so
 %{_infodir}/*.info*
 %{_mandir}/man1/*.1*
+%lang(fr) %{_mandir}/fr/man1/*.1*
+%lang(pl) %{_mandir}/pl/man1/*.1*

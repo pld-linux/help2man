@@ -1,0 +1,19 @@
+--- help2man-1.31.1/Makefile.in.orig	2003-07-09 13:05:40.000000000 +0200
++++ help2man-1.31.1/Makefile.in	2003-07-14 21:45:17.000000000 +0200
+@@ -19,6 +19,7 @@
+ DESTDIR =
+ 
+ CC = @CC@
++CFLAGS = @CFLAGS@
+ PERL = @PERL@
+ INSTALL = @INSTALL@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
+@@ -97,7 +98,7 @@
+ 	chmod 555 $@
+ 
+ $(hack).so: $(srcdir)/$(hack).c
+-	$(CC) -o $@ -shared $?
++	$(CC) $(CFLAGS) -fPIC -o $@ -shared $? -ldl -Wl,-soname=$(hack).so
+ 
+ $(target).1: $(target) $(srcdir)/$(target).h2m
+ 	./$(target) --include=$(srcdir)/$(target).h2m \
