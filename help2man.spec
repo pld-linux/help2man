@@ -10,6 +10,7 @@ Source0:	http://ftp.debian.org/debian/pool/main/h/help2man/%{name}_%{version}.ta
 # Source0-md5:	4fd9c94cda2572735790e22e7fce3928
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/help2man/
+BuildRequires:	gettext-devel
 BuildRequires:	perl-Locale-gettext
 BuildRequires:	rpm-perlprov
 BuildRequires:	texinfo
