@@ -2,7 +2,7 @@
 Summary:	help2man - automatic manual page generation
 Summary(pl):	help2man - automatyczne generowanie stron manuala
 Name:		help2man
-Version:	1.28
+Version:	1.29
 Release:	1
 License:	GPL
 Group:		Applications/Text
@@ -58,5 +58,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS README THANKS
 %attr(755,root,root) %{_bindir}/*
-%{_infodir}/*
-%{_mandir}/man1/*
+%{_infodir}/*.info*
+%{_mandir}/man1/*.1*

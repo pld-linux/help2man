@@ -1,10 +1,10 @@
---- help2man-1.28/help2man.texi.orig	Mon Jun  3 16:54:16 2002
-+++ help2man-1.28/help2man.texi	Sun Jul 14 02:38:37 2002
+--- help2man-1.29/help2man.texi.orig	Mon Jun  3 16:54:16 2002
++++ help2man-1.29/help2man.texi	Sun Jul 14 02:38:37 2002
 @@ -5,9 +5,9 @@
  @finalout
  @c $Id$
  
--@dircategory GNU admin
+-@dircategory GNU programming support
 +@dircategory Programming tools:
  @direntry
 -* help2man: (help2man).      Automatic manual page generation.
