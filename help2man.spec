@@ -7,6 +7,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Text
 Source0:	ftp://ftp.gnu.org/gnu/help2man/%{name}-%{version}.tar.gz
+# Source0-md5: d084ca7079239b4405f3a07298cf7229
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/help2man/
 BuildRequires:	rpm-perlprov
