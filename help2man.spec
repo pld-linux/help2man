@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	help2man - automatic manual page generation
-Summary(pl):	help2man - automatyczne generowanie stron manuala
+Summary(pl.UTF-8):   help2man - automatyczne generowanie stron manuala
 Name:		help2man
 Version:	1.36.4
 Release:	1
@@ -25,13 +25,13 @@ produces reasonably standard `--help' and `--version' outputs,
 help2man can re-arrange that output into something which resembles
 a manual page.
 
-%description -l pl
-help2man to narzêdzie do automatycznego generowania prostych stron
-manuala na podstawie wyj¶cia z programu. Ten program ma za zadanie
-daæ autorom oprogramowania ³atwy sposób na do³±czanie stron manuala
-bez opiekowania siê nimi. Po wskazaniu programu, który daje w miarê
-standardowe wyj¶cie dla opcji --help i --version, help2man potrafi
-przekszta³ciæ to wyj¶cie na co¶ przypominaj±cego stronê manuala.
+%description -l pl.UTF-8
+help2man to narzÄ™dzie do automatycznego generowania prostych stron
+manuala na podstawie wyjÅ›cia z programu. Ten program ma za zadanie
+daÄ‡ autorom oprogramowania Å‚atwy sposÃ³b na doÅ‚Ä…czanie stron manuala
+bez opiekowania siÄ™ nimi. Po wskazaniu programu, ktÃ³ry daje w miarÄ™
+standardowe wyjÅ›cie dla opcji --help i --version, help2man potrafi
+przeksztaÅ‚ciÄ‡ to wyjÅ›cie na coÅ› przypominajÄ…cego stronÄ™ manuala.
 
 %prep
 %setup -q
