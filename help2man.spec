@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	help2man - automatic manual page generation
-Summary(pl.UTF-8):   help2man - automatyczne generowanie stron manuala
+Summary(pl.UTF-8):	help2man - automatyczne generowanie stron manuala
 Name:		help2man
 Version:	1.36.4
 Release:	1
