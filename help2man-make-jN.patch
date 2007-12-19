@@ -1,0 +1,10 @@
+--- help2man-1.36.4/Makefile.in.orig	2007-12-19 03:00:57.059900362 +0100
++++ help2man-1.36.4/Makefile.in	2007-12-19 03:01:16.556925968 +0100
+@@ -53,6 +53,7 @@
+ 	fi
+ 
+ install_preload: preload
++	$(MKINSTALLDIRS) $(DESTDIR)$(libdir)
+ 	$(INSTALL_PROGRAM) $(preload).so $(DESTDIR)$(libdir)
+ 
+ install_l10n: man_l10n
