@@ -9,6 +9,7 @@ Group:		Applications/Text
 Source0:	http://ftp.debian.org/debian/pool/main/h/help2man/%{name}_%{version}.tar.gz
 # Source0-md5:	d31a0a38c2ec71faa06723f6b8bd3076
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-make-jN.patch
 URL:		http://www.gnu.org/software/help2man/
 BuildRequires:	gettext-devel
 BuildRequires:	perl-Locale-gettext
@@ -36,6 +37,7 @@ przekształcić to wyjście na coś przypominającego stronę manuala.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure
@@ -46,7 +48,7 @@ przekształcić to wyjście na coś przypominającego stronę manuala.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -j1 install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
