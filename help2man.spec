@@ -2,12 +2,12 @@
 Summary:	help2man - automatic manual page generation
 Summary(pl.UTF-8):	help2man - automatyczne generowanie stron manuala
 Name:		help2man
-Version:	1.36.4
+Version:	1.38.2
 Release:	1
-License:	GPL
+License:	GPL v3+
 Group:		Applications/Text
 Source0:	http://ftp.debian.org/debian/pool/main/h/help2man/%{name}_%{version}.tar.gz
-# Source0-md5:	d31a0a38c2ec71faa06723f6b8bd3076
+# Source0-md5:	426671c6fe79e5ef2233303367eab5a6
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-make-jN.patch
 URL:		http://www.gnu.org/software/help2man/
@@ -40,7 +40,8 @@ przekształcić to wyjście na coś przypominającego stronę manuala.
 %patch1 -p1
 
 %build
-%configure
+%configure \
+	--enable-nls
 
 %{__make} \
 	CFLAGS="%{rpmcflags}"
@@ -56,20 +57,24 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc NEWS README THANKS
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/hacklocaledir.so
-%{_infodir}/*.info*
-%{_mandir}/man1/*.1*
-%lang(fi) %{_mandir}/fi/man1/*.1*
-%lang(fr) %{_mandir}/fr/man1/*.1*
-%lang(pl) %{_mandir}/pl/man1/*.1*
-%lang(sv) %{_mandir}/sv/man1/*.1*
+%doc NEWS README THANKS debian/changelog
+%attr(755,root,root) %{_bindir}/help2man
+%attr(755,root,root) %{_libdir}/bindtextdomain.so
+%{_infodir}/help2man.info*
+%{_mandir}/man1/help2man.1*
+%lang(de) %{_mandir}/de/man1/help2man.1*
+%lang(fi) %{_mandir}/fi/man1/help2man.1*
+%lang(fr) %{_mandir}/fr/man1/help2man.1*
+%lang(pl) %{_mandir}/pl/man1/help2man.1*
+%lang(pt_BR) %{_mandir}/pt_BR/man1/help2man.1*
+%lang(ru) %{_mandir}/ru/man1/help2man.1*
+%lang(sv) %{_mandir}/sv/man1/help2man.1*
+%lang(vi) %{_mandir}/vi/man1/help2man.1*
