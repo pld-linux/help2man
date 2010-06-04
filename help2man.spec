@@ -23,14 +23,14 @@ from program output. This program is intended to provide an easy way
 for software authors to include a manual page in their distribution
 without having to maintain that document. Given a program which
 produces reasonably standard `--help' and `--version' outputs,
-help2man can re-arrange that output into something which resembles
-a manual page.
+help2man can re-arrange that output into something which resembles a
+manual page.
 
 %description -l pl.UTF-8
 help2man to narzędzie do automatycznego generowania prostych stron
-manuala na podstawie wyjścia z programu. Ten program ma za zadanie
-dać autorom oprogramowania łatwy sposób na dołączanie stron manuala
-bez opiekowania się nimi. Po wskazaniu programu, który daje w miarę
+manuala na podstawie wyjścia z programu. Ten program ma za zadanie dać
+autorom oprogramowania łatwy sposób na dołączanie stron manuala bez
+opiekowania się nimi. Po wskazaniu programu, który daje w miarę
 standardowe wyjście dla opcji --help i --version, help2man potrafi
 przekształcić to wyjście na coś przypominającego stronę manuala.
 
