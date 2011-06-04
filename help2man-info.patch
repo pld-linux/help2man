@@ -1,14 +1,14 @@
---- help2man-1.29/help2man.texi.orig	Mon Jun  3 16:54:16 2002
-+++ help2man-1.29/help2man.texi	Sun Jul 14 02:38:37 2002
-@@ -5,9 +5,9 @@
+--- help2man-1.40.2/help2man.texi.orig	2011-05-30 04:18:18.000000000 +0200
++++ help2man-1.40.2/help2man.texi	2011-06-04 21:51:01.169077329 +0200
+@@ -3,9 +3,9 @@
+ @settitle @command{help2man} Reference Manual
  @finalout
- @c $Id$
  
--@dircategory GNU programming support
+-@dircategory Software development
 +@dircategory Programming tools:
  @direntry
 -* help2man: (help2man).      Automatic manual page generation.
 +* help2man: (help2man).			Automatic manual page generation
  @end direntry
  
- @ifinfo
+ @copying
