@@ -2,12 +2,12 @@
 Summary:	help2man - automatic manual page generation
 Summary(pl.UTF-8):	help2man - automatyczne generowanie stron manuala
 Name:		help2man
-Version:	1.40.12
+Version:	1.40.13
 Release:	1
 License:	GPL v3+
 Group:		Applications/Text
 Source0:	http://ftp.debian.org/debian/pool/main/h/help2man/%{name}_%{version}.tar.gz
-# Source0-md5:	6a37675ce2b0897cd8c6c19106e510a3
+# Source0-md5:	ecbc98f1f146e404e85d7bef520b34d8
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/help2man/
 BuildRequires:	gettext-devel
