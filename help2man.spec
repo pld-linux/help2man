@@ -14,6 +14,7 @@ BuildRequires:	perl-base >= 1:5.8
 BuildRequires:	perl-Locale-gettext
 BuildRequires:	po4a
 BuildRequires:	rpm-perlprov
+BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo
 BuildRequires:	xz
