@@ -1,8 +1,8 @@
---- help2man-1.40.2/help2man.texi.orig	2011-05-30 04:18:18.000000000 +0200
-+++ help2man-1.40.2/help2man.texi	2011-06-04 21:51:01.169077329 +0200
-@@ -3,9 +3,9 @@
- @settitle @command{help2man} Reference Manual
- @finalout
+--- help2man-1.48.2/help2man.texi.orig	2021-03-05 18:22:24.637542748 +0100
++++ help2man-1.48.2/help2man.texi	2021-03-05 18:29:03.111384755 +0100
+@@ -5,9 +5,9 @@
+ 
+ @documentencoding UTF-8
  
 -@dircategory Software development
 +@dircategory Programming tools:
