@@ -1,12 +1,12 @@
 Summary:	help2man - automatic manual page generation
 Summary(pl.UTF-8):	help2man - automatyczne generowanie stron manuala
 Name:		help2man
-Version:	1.48.5
+Version:	1.49.2
 Release:	1
 License:	GPL v3+
 Group:		Applications/Text
 Source0:	http://ftp.debian.org/debian/pool/main/h/help2man/%{name}_%{version}.tar.xz
-# Source0-md5:	6bf2cc2c943f9fddc000ffc3925d43c7
+# Source0-md5:	0372898fbf054140d62385a79c5855f4
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/help2man/
 BuildRequires:	gettext-tools
@@ -41,9 +41,6 @@ przekształcić to wyjście na coś przypominającego stronę manuala.
 %prep
 %setup -q
 %patch0 -p1
-
-# too little coverage (<60%) as of 1.48.3
-%{__rm} po-texi/zh_CN.po
 
 %build
 %configure \
@@ -81,10 +78,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_infodir}/help2man-fr.info*
 %lang(pl) %{_infodir}/help2man-pl.info*
 %lang(pt_BR) %{_infodir}/help2man-pt_BR.info*
+%lang(ro) %{_infodir}/help2man-ro.info*
 %lang(sr) %{_infodir}/help2man-sr.info*
 %lang(sv) %{_infodir}/help2man-sv.info*
 %lang(uk) %{_infodir}/help2man-uk.info*
-#%lang(zh_CN) %{_infodir}/help2man-zh_CN.info*
+%lang(zh_CN) %{_infodir}/help2man-zh_CN.info*
 %{_mandir}/man1/help2man.1*
 %lang(da) %{_mandir}/da/man1/help2man.1*
 %lang(de) %{_mandir}/de/man1/help2man.1*
@@ -100,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(nb) %{_mandir}/nb/man1/help2man.1*
 %lang(pl) %{_mandir}/pl/man1/help2man.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/help2man.1*
+%lang(ro) %{_mandir}/ro/man1/help2man.1*
 %lang(ru) %{_mandir}/ru/man1/help2man.1*
 %lang(sr) %{_mandir}/sr/man1/help2man.1*
 %lang(sv) %{_mandir}/sv/man1/help2man.1*
