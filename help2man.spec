@@ -40,7 +40,7 @@ przekształcić to wyjście na coś przypominającego stronę manuala.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 # completeness percentage is too low (as of 1.49.3)
 %{__rm} po-texi/zh_CN.po
